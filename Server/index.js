@@ -1,7 +1,11 @@
 import express from 'express';
-import Database from './config/dbConn.js'
-import addAdmin from './controller/admin.controller.js';
 import dotenv from 'dotenv';
+
+import Database from './config/dbConn.js'
+import { addAdmin, adminLogin } from './controller/admin.controller.js';
+import sendToken from './middleware/sendToken.js';
+import verifyToken from './middleware/verifyToken.js';
+
 
 dotenv.config();
 const app = express();
@@ -16,8 +20,15 @@ db.connect().catch((err) =>
   console.error("Error connecting to database:", err)
 );
 
-await addAdmin();
+app.use(express.json());
 
+app.post('/account/signup', addAdmin, sendToken);
+
+app.post('/account/login', adminLogin, sendToken)
+
+app.post('/verify', verifyToken, (req, res) => {
+  res.send("<h1>Hello world<h1>");
+})
 // server running check
 app.get('/server-running', (req, res) => {
     res.status(200).json({ message: "Server is up and running!" });

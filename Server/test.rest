@@ -1,0 +1,33 @@
+POST http://localhost:4000/account/signup/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "Adityaxyz",
+    "password": "admn"
+}
+
+###
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc4NWY1OTE4Y2U3OTkxOTRlZmMxMiIsImVtYWlsIjoiQWRpdHlheHl6IiwiaWF0IjoxNzE0OTIzOTA5LCJleHAiOjE3MTQ5NDU1MDl9.ZxMqq_oyJvNdlfehSNHDHOFiY26oL98vphWco5cRwh4",
+  "admin": {
+    "id": "663785f5918ce799194efc12",
+    "email": "Adityaxyz"
+  },
+  "message": "access token generated"
+}
+
+
+###
+
+POST http://localhost:4000/account/login/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "Adityaxyz",
+    "password": "admn"
+}
+
+###
+
+POST http://localhost:4000/verify/ HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2Mzc4NWY1OTE4Y2U3OTkxOTRlZmMxMiIsImVtYWlsIjoiQWRpdHlheHl6IiwiaWF0IjoxNzE0OTIzOTA5LCJleHAiOjE3MTQ5NDU1MDl9.ZxMqq_oyJvNdlfehSNHDHOFiY26oL98vphWco5cRwh4
